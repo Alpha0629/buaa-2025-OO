@@ -1,0 +1,70 @@
+@startuml
+title 电梯调度系统协作图
+
+actor User
+participant ":MainClass" as Main
+participant ":InputThread" as Input
+participant ":MainQueue" as MainQ
+participant ":DispatchThread" as Dispatch
+participant ":SubQueue" as SubQ
+participant ":ElevatorThread" as Elevator
+participant ":Strategy" as Strategy
+
+group 启动阶段
+Main -> Elevator : 创建电梯线程(6个)\n携带对应子队列\nstart() (6次)
+Main -> Dispatch : 创建调度线程\n携带主队列、子队列映射、电梯映射\nstart()
+Main -> Input : 创建输入线程\n携带主队列\nstart()
+end
+
+User -> Input : 输入请求(Person/Sche/Update)
+Input -> MainQ : pushPersonRequest()
+Input -> MainQ : pushScheRequest()
+Input -> MainQ : pushUpdateRequest()
+
+MainQ -> Dispatch : pullRequest()
+
+alt Person请求
+    Dispatch -> SubQ : pushPersonRequest()
+    SubQ -> Elevator : notifyAll()
+else Sche请求
+    Dispatch -> SubQ : pushScheRequest()
+    SubQ -> Elevator : notifyAll()
+else Update请求
+    Dispatch -> ElevatorA : setMoved(true)
+    Dispatch -> SubQB : pushUpdateRequest()
+    SubQB -> ElevatorB : notifyAll()
+end
+
+SubQ -> Elevator : pullGivenRequest()
+
+Elevator -> Strategy : getAdvice()
+Strategy --> Elevator : Advice
+
+group 电梯运行循环
+    Elevator -> Elevator : Move()/OpenAndClose()
+    Elevator -> MainQ : subNotFinished()\n如果到达目的地
+    Elevator -> MainQ : Out()\n如果没有到达目的地
+    SubQ -> MainQ : transferFromSubToMain()
+    SubQ -> SubQ : transferFromCacheToSub
+    SubQ -> MainQ : transferFromCacheToMain
+end
+
+group 双轿厢更新
+    ElevatorB -> ElevatorA : waitForMovedState()
+    ElevatorB -> ElevatorA : Scheduling()
+    ElevatorB -> ElevatorA : setFriendEle()
+    ElevatorA -> ElevatorB : setFriendEle()
+    ElevatorB -> SubQB : deleteFirstUpdate()
+    ElevatorB -> ElevatorA : Free()
+end
+
+group 终止阶段
+Input -> MainQ : setInputEnd()\n输入结束
+MainQ -> Input : 终止输入线程
+MainQ -> Dispatch : 分配线程主动读取\nisRealEnd()
+Dispatch -> SubQ : setEnd()\n所有子队列
+SubQ -> Dispatch : 终止分配线程
+
+end
+
+@enduml

@@ -1,0 +1,212 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Advice <<enumeration>> {
+    OVER
+    MOVE
+    REVERSE
+    OPEN
+    WAIT
+    SCHE
+    BLOCK
+    UPDATE
+    MOVED
+}
+
+interface Request {
+}
+
+class Person implements Request {
+    -personId: int
+    -fromFloor: int
+    -toFloor: int
+    -elevatorId: int
+    -priority: int
+    -direction: boolean
+    -distributed: boolean
+    +getPersonId(): int
+    +getFromFloor(): int
+    +setFromFloor(int)
+    +getToFloor(): int
+    +setElevatorId(int)
+    +getElevatorId(): int
+    +getPriority(): int
+    +getDirection(): boolean
+    +setDirection()
+    +resetElevatorId()
+}
+
+class Sche implements Request {
+    -elevatorId: int
+    -speed: int
+    -toFloor: int
+    +getElevatorId(): int
+    +getSpeed(): int
+    +getToFloor(): int
+}
+
+class Update implements Request {
+    -elevatorId1: int
+    -elevatorId2: int
+    -transferFloor: int
+    +getElevatorAId(): int
+    +getElevatorBId(): int
+    +getTransferFloor(): int
+}
+
+class MainQueue {
+    -persons: ArrayList<Person>
+    -sches: ArrayList<Sche>
+    -updates: ArrayList<Update>
+    -isInputEnd: boolean
+    -notFinished: int
+    +pushPersonRequest(Person)
+    +pushScheRequest(Sche)
+    +pushUpdateRequest(Update)
+    +pullRequest(): Request
+    +addNotFinished()
+    +subNotFinished()
+    +isFinished(): boolean
+    +isRealEnd(): boolean
+    +setInputEnd()
+    +allEmpty(): boolean
+}
+
+class SubQueue {
+    -isEnd: boolean
+    -mainQueue: MainQueue
+    -persons: ArrayList<Person>
+    -cache: ArrayList<Person>
+    -sches: ArrayList<Sche>
+    -updates: ArrayList<Update>
+    -moving: boolean
+    +pushPersonRequest(Person)
+    +pushScheRequest(Sche)
+    +pushUpdateRequest(Update)
+    +transferFromSubToMain()
+    +transferFromCacheToSub()
+    +transferFromCacheToMain()
+    +pullGivenRequest(int, boolean): Person
+    +deleteFirstSche()
+    +deleteFirstUpdate()
+    +getPersons(): ArrayList<Person>
+    +getCache(): ArrayList<Person>
+    +getSches(): ArrayList<Sche>
+    +getUpdates(): ArrayList<Update>
+    +setEnd()
+    +isEnd(): boolean
+    +bothEmpty(): boolean
+    +personsIsEmpty(): boolean
+    +schesIsEmpty(): boolean
+    +updatesIsEmpty(): boolean
+    +setMoving(boolean)
+    +getAllPersonsCount(): int
+}
+
+class ElevatorThread {
+    -id: int
+    -currentNum: int
+    -currentFloor: int
+    -speed: int
+    -minFloor: int
+    -maxFloor: int
+    -direction: boolean
+    -block: boolean
+    -moved: boolean
+    -friendEle: ElevatorThread
+    -elevators: HashMap<Integer, ElevatorThread>
+    -mainQueue: MainQueue
+    -subQueue: SubQueue
+    -persons: ArrayList<Person>
+    -strategy: Strategy
+    -advice: Advice
+    +run()
+    +WaitingOrMove()
+    +OpenAndClose()
+    +Move()
+    +IncreaseFloor()
+    +DecreaseFloor()
+    +Out()
+    +In()
+    +Scheduling(int)
+    +AllOut()
+    +Updating()
+    +Free(ElevatorThread)
+    +StringCurrentFloor(): String
+}
+
+class DispatchThread {
+    -mainQueue: MainQueue
+    -subRequestQueues: HashMap<Integer, SubQueue>
+    -elevators: HashMap<Integer, ElevatorThread>
+    +run()
+    +dispatchUpdate(Update)
+    +dispatchSche(Sche)
+    +dispatchPerson(Person)
+    +weightCalculation(ElevatorThread, Person): int
+    +canNotIn(Person, int, int): boolean
+    +canInButMeaningless(Person, int, int): boolean
+    +canInButNeedTransfer(Person, int, int): boolean
+    +caculateDistance(ElevatorThread, Person): int
+    +calculatePersonInEle(ElevatorThread, Person): int
+    +calculatePersonInSub(ElevatorThread, Person): int
+}
+
+class Strategy {
+    -subQueue: SubQueue
+    -persons: ArrayList<Person>
+    +getAdvice(int, int, boolean, boolean, boolean, int, int, int): Advice
+    +canExecuteSche(int): boolean
+    +hasScheInOriginDirection(int, boolean): boolean
+    +canOpenForOut(int, int, int, int): boolean
+    +canOpenForIn(int, int, boolean): boolean
+    +processNonePeople(int, boolean, int): Advice
+}
+
+class InputThread {
+    -mainQueue: MainQueue
+    +run()
+}
+
+class MainClass {
+    +main(String[])
+}
+
+' 关系
+MainQueue "1" o-- "0..*" Person
+MainQueue "1" o-- "0..*" Sche
+MainQueue "1" o-- "0..*" Update
+
+SubQueue "1" o-- "0..*" Person
+SubQueue "1" o-- "0..1" Sche
+SubQueue "1" o-- "0..1" Update
+SubQueue "1" --> "1" MainQueue
+
+ElevatorThread "1" *-- "0..6" Person
+ElevatorThread "1" --> "1" SubQueue
+ElevatorThread "1" --> "1" Strategy
+ElevatorThread "1" --> "1" MainQueue
+ElevatorThread "1" --> "1" ElevatorThread : friendEle
+
+DispatchThread "1" --> "1" MainQueue
+DispatchThread "1" *-- "6" SubQueue
+DispatchThread "1" *-- "6" ElevatorThread
+
+Strategy "1" --> "1" SubQueue
+Strategy "1" *-- "0..6" Person
+
+InputThread "1" --> "1" MainQueue
+
+MainClass *-- "1" MainQueue
+MainClass *-- "1" DispatchThread
+MainClass *-- "1" InputThread
+MainClass *-- "6" ElevatorThread
+MainClass *-- "6" SubQueue
+
+Person ..|> Request
+Sche ..|> Request
+Update ..|> Request
+
+ElevatorThread ..> Advice
+Strategy ..> Advice
+@enduml
