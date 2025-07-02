@@ -1,0 +1,193 @@
+0
+[2025-01-03] B-4912-01 moving trace: 0
+[2025-01-03] [accept] 97621628 borrowed C-0746-01
+[2025-01-03] C-0445-01 moving trace: 0
+[2025-01-03] C-4632-03 moving trace: 0
+[2025-01-03] [reject] 81237106 ordered A-6945
+[2025-01-03] [accept] 81237106 ordered C-1208
+[2025-01-03] [accept] 81237106 borrowed B-1592-01
+[2025-01-03] [accept] 81237106 read B-1592-02
+[2025-01-03] C-1208-03 moving trace: 0
+[2025-01-03] [accept] 81237106 restored B-1592-02
+1
+[2025-01-03] move B-1592-02 from bro to bs
+5
+[2025-01-05] move C-0746-02 from bs to hbs
+[2025-01-05] move C-0746-03 from bs to hbs
+[2025-01-05] move B-1592-02 from bs to hbs
+[2025-01-05] move B-1592-03 from bs to hbs
+[2025-01-05] move C-1208-01 from bs to ao for 81237106
+[2025-01-05] [accept] 81237106 picked C-1208-01
+0
+4
+[2025-01-06] move C-0746-03 from hbs to bs
+[2025-01-06] move C-0746-02 from hbs to bs
+[2025-01-06] move B-1592-03 from hbs to bs
+[2025-01-06] move B-1592-02 from hbs to bs
+[2025-01-06] [accept] 81237106 returned B-1592-01
+1
+[2025-01-06] move B-1592-01 from bro to bs
+0
+[2025-01-14] [accept] 74258142 read C-7881-01
+[2025-01-14] [reject] 74258142 read B-1592
+[2025-01-14] [accept] 81237106 read C-4632-01
+[2025-01-14] A-6945-02 moving trace: 0
+[2025-01-14] [accept] 74258142 borrowed C-0445-01
+[2025-01-14] [accept] 97621628 borrowed C-1208-02
+[2025-01-14] C-1208-03 moving trace: 0
+[2025-01-14] [accept] 97621628 read C-0746-02
+[2025-01-14] [accept] 81237106 borrowed C-7540-01
+[2025-01-14] [accept] 74258142 restored C-7881-01
+[2025-01-14] [accept] 81237106 restored C-4632-01
+[2025-01-14] [accept] 97621628 restored C-0746-02
+3
+[2025-01-14] move C-4632-01 from bro to bs
+[2025-01-14] move C-0746-02 from bro to bs
+[2025-01-14] move C-7881-01 from bro to bs
+13
+[2025-01-21] move C-4632-01 from bs to hbs
+[2025-01-21] move C-4632-02 from bs to hbs
+[2025-01-21] move C-4632-03 from bs to hbs
+[2025-01-21] move C-1208-03 from bs to hbs
+[2025-01-21] move C-0746-02 from bs to hbs
+[2025-01-21] move C-0746-03 from bs to hbs
+[2025-01-21] move C-7881-01 from bs to hbs
+[2025-01-21] move C-7881-02 from bs to hbs
+[2025-01-21] move C-7881-03 from bs to hbs
+[2025-01-21] move C-0445-02 from bs to hbs
+[2025-01-21] move C-0445-03 from bs to hbs
+[2025-01-21] move C-7540-02 from bs to hbs
+[2025-01-21] move C-7540-03 from bs to hbs
+[2025-01-21] [accept] 97621628 returned C-0746-01
+1
+[2025-01-21] move C-0746-01 from bro to bs
+13
+[2025-01-25] move C-4632-02 from hbs to bs
+[2025-01-25] move C-4632-01 from hbs to bs
+[2025-01-25] move C-4632-03 from hbs to bs
+[2025-01-25] move C-1208-03 from hbs to bs
+[2025-01-25] move C-0746-03 from hbs to bs
+[2025-01-25] move C-0746-02 from hbs to bs
+[2025-01-25] move C-7540-03 from hbs to bs
+[2025-01-25] move C-7540-02 from hbs to bs
+[2025-01-25] move C-0445-02 from hbs to bs
+[2025-01-25] move C-0445-03 from hbs to bs
+[2025-01-25] move C-7881-01 from hbs to bs
+[2025-01-25] move C-7881-02 from hbs to bs
+[2025-01-25] move C-7881-03 from hbs to bs
+[2025-01-25] [accept] 74258142 returned C-0445-01
+[2025-01-25] [accept] 97621628 returned C-1208-02
+2
+[2025-01-25] move C-1208-02 from bro to bs
+[2025-01-25] move C-0445-01 from bro to bs
+0
+[2025-01-29] [accept] 81237106 returned C-7540-01
+1
+[2025-01-29] move C-7540-01 from bro to bs
+0
+0
+0
+0
+0
+[2025-04-10] A-6945-02 moving trace: 0
+[2025-04-10] C-1208-02 moving trace: 3
+1 [2025-01-14] from bs to user
+2 [2025-01-25] from user to bro
+3 [2025-01-25] from bro to bs
+[2025-04-10] [accept] 97621628 borrowed C-7881-01
+[2025-04-10] [accept] 97621628 read B-1592-01
+[2025-04-10] C-0746-01 moving trace: 3
+1 [2025-01-03] from bs to user
+2 [2025-01-21] from user to bro
+3 [2025-01-21] from bro to bs
+[2025-04-10] [accept] 74258142 read B-1592-02
+[2025-04-10] [accept] 28234984 read B-1592-03
+[2025-04-10] [accept] 74258142 borrowed C-0746-01
+[2025-04-10] [accept] 97621628 restored B-1592-01
+[2025-04-10] [accept] 74258142 restored B-1592-02
+3
+[2025-04-10] move B-1592-03 from rr to bs
+[2025-04-10] move B-1592-01 from bro to bs
+[2025-04-10] move B-1592-02 from bro to bs
+7
+[2025-04-18] move C-0746-02 from bs to hbs
+[2025-04-18] move C-0746-03 from bs to hbs
+[2025-04-18] move C-7881-02 from bs to hbs
+[2025-04-18] move C-7881-03 from bs to hbs
+[2025-04-18] move B-1592-01 from bs to hbs
+[2025-04-18] move B-1592-02 from bs to hbs
+[2025-04-18] move B-1592-03 from bs to hbs
+[2025-04-18] [accept] 97621628 read C-0746-02
+[2025-04-18] [accept] 57117592 ordered C-0445
+[2025-04-18] [accept] 81237106 borrowed C-7881-02
+[2025-04-18] B-1592-01 moving trace: 7
+1 [2025-01-03] from bs to user
+2 [2025-01-06] from user to bro
+3 [2025-01-06] from bro to bs
+4 [2025-04-10] from bs to rr
+5 [2025-04-10] from rr to bro
+6 [2025-04-10] from bro to bs
+7 [2025-04-18] from bs to hbs
+[2025-04-18] [accept] 81237106 read C-7881-03
+[2025-04-18] [accept] 74258142 read C-7540-01
+[2025-04-18] [accept] 28234984 borrowed C-1208-02
+[2025-04-18] [accept] 81237106 ordered C-0445
+[2025-04-18] [accept] 97621628 restored C-0746-02
+[2025-04-18] [accept] 81237106 restored C-7881-03
+[2025-04-18] [accept] 74258142 restored C-7540-01
+3
+[2025-04-18] move C-0746-02 from bro to bs
+[2025-04-18] move C-7540-01 from bro to bs
+[2025-04-18] move C-7881-03 from bro to bs
+11
+[2025-04-21] move C-1208-03 from bs to hbs
+[2025-04-21] move C-0746-02 from bs to hbs
+[2025-04-21] move C-7881-03 from bs to hbs
+[2025-04-21] move C-7540-01 from bs to hbs
+[2025-04-21] move C-7540-02 from bs to hbs
+[2025-04-21] move C-7540-03 from bs to hbs
+[2025-04-21] move B-1592-03 from hbs to bs
+[2025-04-21] move B-1592-01 from hbs to bs
+[2025-04-21] move B-1592-02 from hbs to bs
+[2025-04-21] move C-0445-01 from bs to ao for 57117592
+[2025-04-21] move C-0445-02 from bs to ao for 81237106
+0
+7
+[2025-04-22] move C-1208-03 from hbs to bs
+[2025-04-22] move C-0746-03 from hbs to bs
+[2025-04-22] move C-0746-02 from hbs to bs
+[2025-04-22] move C-7540-01 from hbs to bs
+[2025-04-22] move C-7540-03 from hbs to bs
+[2025-04-22] move C-7540-02 from hbs to bs
+[2025-04-22] move C-7881-03 from hbs to bs
+0
+0
+[2025-04-23] [accept] 81237106 read C-0445-03
+[2025-04-23] [accept] 74258142 read C-4632-01
+[2025-04-23] [accept] 97621628 borrowed C-4632-02
+[2025-04-23] [accept] 97621628 read C-1208-03
+[2025-04-23] [reject] 57117592 ordered B-1592
+[2025-04-23] [accept] 74258142 borrowed B-4912-01
+[2025-04-23] [accept] 74258142 ordered C-1208
+[2025-04-23] [accept] 28234984 returned C-1208-02
+[2025-04-23] [accept] 81237106 restored C-0445-03
+[2025-04-23] [accept] 97621628 restored C-1208-03
+4
+[2025-04-23] move C-4632-01 from rr to bs
+[2025-04-23] move C-1208-02 from bro to bs
+[2025-04-23] move C-1208-03 from bro to bs
+[2025-04-23] move C-0445-03 from bro to bs
+10
+[2025-04-26] move C-4632-01 from bs to hbs
+[2025-04-26] move C-4632-03 from bs to hbs
+[2025-04-26] move B-4912-02 from bs to hbs
+[2025-04-26] move B-4912-03 from bs to hbs
+[2025-04-26] move C-1208-02 from bs to hbs
+[2025-04-26] move C-1208-03 from bs to hbs
+[2025-04-26] move C-0445-03 from bs to hbs
+[2025-04-26] move C-0445-02 from ao to bs
+[2025-04-26] move C-0445-01 from ao to bs
+[2025-04-26] move C-1208-02 from hbs to ao for 74258142
+-----ERROR-----
+The norm bookshelf contains hot books after arrangement : C-0445-02
+-----ERROR-----
