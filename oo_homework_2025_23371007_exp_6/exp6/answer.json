@@ -1,0 +1,139 @@
+{
+  "2": "
+  @ensures (\forall int i; 1 <= i && i <= size && 2 * i <= size;
+  compare(i, 2 * i) <= 0) &&
+  (\forall int i; 1 <= i && i <= size && 2 * i + 1 <= size;
+  compare(i, 2 * i + 1) <= 0);",
+  "3": "
+  /*@ public normal_behavior
+  @ assignable heap.elements, heap.size, heap.capacity, MyObject.totalId; // [3-1]
+  @ requires \old(heap.size) + count <= DEFAULT_CAPACITY; // [3-2] 未触发GC条件
+  @ ensures heap.size == \old(heap.size) + count; // [3-3] 堆大小正常增长
+  @ ensures (\forall int i;
+                 1 <= i && i <= \old(heap.size);
+                 (\exists int j; 1 <= j <= heap.size;
+                     heap.getElement(j).equals(\old(heap.getElement(i)))) // [3-4] 原对象保留
+             );
+  @ also
+  @ public normal_behavior
+  @ requires \old(heap.size) + count > DEFAULT_CAPACITY; // [3-5] 触发GC条件
+  @ ensures heap.size == (\sum int k; 1 <= k <= \old(heap.size);
+                         (\old(heap.getElement(k).isReferenced()) ? 1 : 0)) + count; // [3-6] 仅保留被引用对象+新对象
+  @ ensures (\forall int i;
+                 1 <= i && i <= \old(heap.size);
+                 \old(heap.getElement(i).isReferenced()) ==>
+                     (\exists int j; 1 <= j <= heap.size;
+                         heap.getElement(j).equals(\old(heap.getElement(i)))) // [3-7] 被引用对象保留
+             );
+  @ ensures (\forall int i;
+                 1 <= i && i <= \old(heap.size);
+                 !(\old(heap.getElement(i).isReferenced()) ==>
+                     (\forall int j; 1 <= j <= heap.size;
+                         !heap.getElement(j).equals(\old(heap.getElement(i)))) // [3-8] 未被引用对象清除
+             );
+      @*/",
+  "session log": {
+    "input1":"请阅读以下代码文件，补充[3]处的JML",
+    "output1":"
+    /*@ public normal_behavior
+  @ requires count >= 0;
+  @ assignable heap.elements, heap.size, MyObject.totalId;
+  @ ensures MyObject.totalId == \old(MyObject.totalId) + count;
+  @ ensures (\forall int i; \old(MyObject.totalId) <= i < \old(MyObject.totalId) + count;
+  @          (\exists int j; 1 <= j <= heap.getSize(); heap.getElement(j).getId() == i));
+  @ ensures (\forall int j; 1 <= j <= heap.getSize();
+  @          (\exists int i; \old(MyObject.totalId) <= i < \old(MyObject.totalId) + count;
+  @             heap.getElement(j).getId() == i) ==> heap.getElement(j).isReferenced());
+  @*/
+    public void createObject(int count);",
+    "input2":
+    "假如你是JML专家，请阅读文件中的java代码，理解代码含义，按照方法上的注释，编写MyJvm类中createObject方法的JML规格，要求包括requires前置条件、ensures后置条件和副作用限定，可以使用\result约束结果、\forall和\exists约束表达式等
+    /**
+    * 该方法用于模拟新建对象
+    * 仅可以对 heap 的属性和 MyObject 的静态属性 totalId 进行修改
+    * 需要考虑以下两种正常情况：
+    * 1. 如果新建并加入 count 个对象之后，堆的大小没有达到 DEFAULT_CAPACITY，则堆正常增大，不会触发 GC，调用方法后，只需要保证新增对象正常加入堆，而且堆中原有的所有元素仍在堆中；
+    * 2. 否则，需要触发 GC，将新元素加入堆中之后要释放堆中所有目前不被引用的对象，调用方法后，堆 heap 需要满足：若原elements数组中元素仍被引用，则该元素应包含于elements数组，若原elements数组中元素未被引用，则该元素应不包含于elements数组
+    * 无论那种情况下，heap.capacity 保持不减，且 MyObject.totalId 需要增加 count
+    * @param count 要新建的对象个数
+    */",
+    "output2":"
+    /*@ public normal_behavior
+  @ requires count >= 0; // 前置条件：不能创建负数对象
+  @ assignable heap.elements, heap.size, heap.capacity, MyObject.totalId;
+  @ ensures MyObject.totalId == \old(MyObject.totalId) + count; // 后置条件1：totalId准确递增
+  @ ensures (\forall int i; \old(MyObject.totalId) <= i < \old(MyObject.totalId)+count;
+  @         (\exists int j; 1 <= j <= heap.getSize(); heap.getElement(j).getId() == i)); // 后置条件2：所有新对象必须存在于堆中
+  @ ensures heap.capacity >= \old(heap.capacity); // 后置条件3：容量永不减少
+  @ ensures (\old(heap.getSize() + count) <= DEFAULT_CAPACITY) ==>
+  @         (heap.getSize() == \old(heap.getSize()) + count && // 未触发GC的情况
+  @          (\forall int k; 1 <= k <= \old(heap.getSize());
+  @           (\exists int m; 1 <= m <= heap.getSize();
+  @            heap.getElement(m).equals(\old(heap.getElement(k))))));
+  @ ensures (\old(heap.getSize() + count) > DEFAULT_CAPACITY) ==>
+  @         ((\forall int k; 1 <= k <= \old(heap.getSize());
+  @           (\old(heap.getElement(k).isReferenced()) ==>
+  @            (\exists int m; 1 <= m <= heap.getSize();
+  @             heap.getElement(m).equals(\old(heap.getElement(k))))) && // 触发GC的情况
+  @          (\forall int k; 1 <= k <= \old(heap.getSize());
+  @           (!\old(heap.getElement(k).isReferenced()) ==>
+  @            (\forall int m; 1 <= m <= heap.getSize();
+  @             !heap.getElement(m).equals(\old(heap.getElement(k))))) &&
+  @          (\exists int n; \old(heap.getSize()) < n <= heap.getSize();
+  @           heap.getElement(n).getId() >= \old(MyObject.totalId))); // 新对象必须包含在堆中
+  @*/
+    public void createObject(int count);",
+    "input3":"请在以上提示和注释的基础上，参照以下模板，补全createObject方法的JML
+    /*@ public normal_behavior
+     @ assignable [3-1];
+     @ requires \old(heap.size) < [3-2];
+     @ ensures heap.size == [3-3];
+     @ ensures (\forall int i;
+                   1 <= i && i <= \old(heap.size);
+                   [3-4]
+               );
+     @ also
+     @ requires \old(heap.size) >= [3-5];
+     @ ensures heap.size == [3-6];
+     @ ensures (\forall int i;
+                   1 <= i && i <= \old(heap.size);
+                   \old(heap.elements[i].isReferenced()) ==>
+                       [3-7]
+               );
+     @ ensures (\forall int i;
+                   1 <= i && i <= \old(heap.size);
+                   !(\old(heap.elements[i].isReferenced())) ==>
+                       [3-8]
+               );
+     @*/",
+    "output3":"
+    /*@ public normal_behavior,
+  @ assignable heap.elements, heap.size, heap.capacity, MyObject.totalId; // [3-1]
+  @ requires \old(heap.size) + count <= DEFAULT_CAPACITY; // [3-2] 未触发GC条件
+  @ ensures heap.size == \old(heap.size) + count; // [3-3] 堆大小正常增长
+  @ ensures (\forall int i;
+                 1 <= i && i <= \old(heap.size);
+                 (\exists int j; 1 <= j <= heap.size;
+                     heap.getElement(j).equals(\old(heap.getElement(i)))) // [3-4] 原对象保留
+             );
+  @ also
+  @ public normal_behavior
+  @ requires \old(heap.size) + count > DEFAULT_CAPACITY; // [3-5] 触发GC条件
+  @ ensures heap.size == (\sum int k; 1 <= k <= \old(heap.size);
+                         (\old(heap.getElement(k).isReferenced()) ? 1 : 0)) + count; // [3-6] 仅保留被引用对象+新对象
+  @ ensures (\forall int i;
+                 1 <= i && i <= \old(heap.size);
+                 \old(heap.getElement(i).isReferenced()) ==>
+                     (\exists int j; 1 <= j <= heap.size;
+                         heap.getElement(j).equals(\old(heap.getElement(i)))) // [3-7] 被引用对象保留
+             );
+  @ ensures (\forall int i;
+                 1 <= i && i <= \old(heap.size);
+                 !(\old(heap.getElement(i).isReferenced()) ==>
+                     (\forall int j; 1 <= j <= heap.size;
+                         !heap.getElement(j).equals(\old(heap.getElement(i)))) // [3-8] 未被引用对象清除
+             );
+  @*/
+public void createObject(int count);"
+  }
+}
