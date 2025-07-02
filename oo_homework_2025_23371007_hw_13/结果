@@ -1,0 +1,395 @@
+0
+[2025-01-03] [accept] 97206718 ordered B-1101
+[2025-01-03] B-9466-01 moving trace: 0
+[2025-01-03] B-3058-01 moving trace: 0
+[2025-01-03] [accept] 26671610 borrowed C-8411-01
+[2025-01-03] B-1092-03 moving trace: 0
+[2025-01-03] C-1625-04 moving trace: 0
+[2025-01-03] [accept] 24240424 ordered B-1159
+[2025-01-03] [accept] 53056176 borrowed B-1899-01
+[2025-01-03] [reject] 53056176 borrowed B-7881
+[2025-01-03] [accept] 51188790 borrowed B-1092-01
+0
+2
+[2025-01-05] move B-1101-01 from bs to ao for 97206718
+[2025-01-05] move B-1159-01 from bs to ao for 24240424
+[2025-01-05] [accept] 18007790 ordered C-0790
+[2025-01-05] [accept] 51188790 borrowed C-0790-01
+[2025-01-05] [accept] 18007790 borrowed C-9091-01
+[2025-01-05] [reject] 27478744 borrowed C-0790
+[2025-01-05] A-3558-01 moving trace: 0
+[2025-01-05] [accept] 53455698 ordered C-6242
+[2025-01-05] [accept] 24240424 borrowed B-2387-01
+[2025-01-05] [accept] 27478744 borrowed B-2387-02
+[2025-01-05] [reject] 53056176 borrowed B-8593
+[2025-01-05] B-0658-02 moving trace: 0
+0
+1
+[2025-01-07] move C-6242-01 from bs to ao for 53455698
+[2025-01-07] [accept] 97206718 picked B-1101-01
+[2025-01-07] [reject] 18007790 picked C-0790
+[2025-01-07] [accept] 24240424 returned B-2387-01
+1
+[2025-01-07] move B-2387-01 from bro to bs
+1
+[2025-01-11] move B-1159-01 from ao to bs
+[2025-01-11] [accept] 18007790 returned C-9091-01
+1
+[2025-01-11] move C-9091-01 from bro to bs
+1
+[2025-01-13] move C-6242-01 from ao to bs
+[2025-01-13] [accept] 27478744 returned B-2387-02
+1
+[2025-01-13] move B-2387-02 from bro to bs
+0
+[2025-01-14] B-2075-04 moving trace: 0
+[2025-01-14] [reject] 51188790 ordered B-4728
+[2025-01-14] [accept] 24240424 borrowed C-6242-01
+[2025-01-14] A-0555-01 moving trace: 0
+[2025-01-14] [accept] 53056176 borrowed C-4364-01
+[2025-01-14] [accept] 53455698 ordered B-7845
+[2025-01-14] [accept] 43141069 ordered C-0790
+[2025-01-14] [accept] 98130314 ordered B-1444
+0
+2
+[2025-01-15] move B-1444-01 from bs to ao for 98130314
+[2025-01-15] move B-7845-01 from bs to ao for 53455698
+[2025-01-15] [accept] 26671610 returned C-8411-01
+1
+[2025-01-15] move C-8411-01 from bro to bs
+0
+[2025-01-16] [accept] 53455698 picked B-7845-01
+0
+0
+[2025-01-19] [accept] 51188790 returned C-0790-01
+[2025-01-19] [reject] 43141069 picked C-0790
+1
+[2025-01-19] move C-0790-01 from bro to bs
+2
+[2025-01-23] move B-1444-01 from ao to bs
+[2025-01-23] move C-0790-01 from bs to ao for 43141069
+[2025-01-23] [accept] 51188790 returned B-1092-01
+1
+[2025-01-23] move B-1092-01 from bro to bs
+0
+[2025-01-27] [accept] 24240424 returned C-6242-01
+1
+[2025-01-27] move C-6242-01 from bro to bs
+2
+[2025-01-31] move C-0790-01 from ao to bs
+[2025-01-31] move C-0790-01 from bs to ao for 18007790
+[2025-01-31] [accept] 53056176 returned B-1899-01
+1
+[2025-01-31] move B-1899-01 from bro to bs
+1
+[2025-02-07] move C-0790-01 from ao to bs
+[2025-02-07] [accept] 43141069 borrowed B-8593-02
+[2025-02-07] [accept] 53056176 borrowed B-5189-01
+[2025-02-07] B-7881-02 moving trace: 0
+[2025-02-07] [accept] 98130314 ordered B-3058
+[2025-02-07] [accept] 27478744 ordered B-0658
+0
+2
+[2025-02-08] move B-3058-01 from bs to ao for 98130314
+[2025-02-08] move B-0658-01 from bs to ao for 27478744
+[2025-02-08] [accept] 53056176 returned B-5189-01
+[2025-02-08] [accept] 27478744 picked B-0658-01
+1
+[2025-02-08] move B-5189-01 from bro to bs
+0
+[2025-02-11] [accept] 98130314 picked B-3058-01
+0
+0
+[2025-02-13] [accept] 43141069 returned B-8593-02
+1
+[2025-02-13] move B-8593-02 from bro to bs
+0
+[2025-02-15] [accept] 53056176 returned C-4364-01
+1
+[2025-02-15] move C-4364-01 from bro to bs
+0
+[2025-02-19] [accept] 53056176 borrowed B-3058-02
+[2025-02-19] [reject] 97206718 borrowed B-1159
+[2025-02-19] [reject] 98130314 borrowed B-0979
+[2025-02-19] [accept] 51188790 ordered B-4728
+0
+1
+[2025-02-20] move B-4728-01 from bs to ao for 51188790
+0
+0
+[2025-02-21] [accept] 53056176 returned B-3058-02
+1
+[2025-02-21] move B-3058-02 from bro to bs
+0
+[2025-02-24] [accept] 51188790 picked B-4728-01
+0
+0
+[2025-02-25] [accept] 18007790 borrowed C-0790-01
+[2025-02-25] [accept] 18007790 ordered B-8593
+[2025-02-25] [accept] 43141069 borrowed C-8411-01
+[2025-02-25] [reject] 98130314 borrowed B-0746
+[2025-02-25] [accept] 97206718 ordered C-8411
+[2025-02-25] [accept] 26671610 borrowed B-8171-01
+[2025-02-25] [accept] 24240424 ordered C-4364
+[2025-02-25] C-4606-01 moving trace: 0
+[2025-02-25] [accept] 53455698 ordered C-8411
+[2025-02-25] [accept] 51188790 borrowed C-3956-01
+0
+4
+[2025-02-26] move C-8411-02 from bs to ao for 97206718
+[2025-02-26] move C-4364-01 from bs to ao for 24240424
+[2025-02-26] move B-8593-02 from bs to ao for 18007790
+[2025-02-26] move C-8411-03 from bs to ao for 53455698
+[2025-02-26] [accept] 26671610 returned B-8171-01
+1
+[2025-02-26] move B-8171-01 from bro to bs
+0
+[2025-02-28] [accept] 18007790 picked B-8593-02
+0
+0
+[2025-03-02] [accept] 97206718 picked C-8411-02
+[2025-03-02] [accept] 24240424 picked C-4364-01
+[2025-03-02] [accept] 53455698 picked C-8411-03
+0
+0
+0
+0
+[2025-03-11] [accept] 18007790 returned C-0790-01
+1
+[2025-03-11] move C-0790-01 from bro to bs
+0
+0
+0
+[2025-03-21] [accept] 51188790 returned C-3956-01
+1
+[2025-03-21] move C-3956-01 from bro to bs
+0
+[2025-04-02] C-8411-03 moving trace: 2
+1 [2025-02-26] from bs to ao
+2 [2025-03-02] from ao to user
+[2025-04-02] [accept] 53056176 ordered B-7334
+[2025-04-02] [reject] 97206718 ordered B-2387
+[2025-04-02] B-1444-04 moving trace: 0
+[2025-04-02] [reject] 97206718 borrowed B-2387
+[2025-04-02] [accept] 43141069 ordered B-1159
+0
+2
+[2025-04-04] move B-7334-01 from bs to ao for 53056176
+[2025-04-04] move B-1159-02 from bs to ao for 43141069
+[2025-04-04] [accept] 43141069 picked B-1159-02
+0
+0
+0
+0
+0
+1
+[2025-04-10] move B-7334-01 from ao to bs
+[2025-04-10] [accept] 24240424 borrowed B-3058-02
+[2025-04-10] [accept] 97206718 ordered C-3567
+[2025-04-10] C-9441-01 moving trace: 0
+[2025-04-10] [reject] 18007790 ordered B-3058
+[2025-04-10] [reject] 43141069 ordered B-3312
+[2025-04-10] [reject] 97206718 ordered B-0658
+[2025-04-10] [accept] 53056176 ordered C-4632
+[2025-04-10] [reject] 53455698 ordered B-8876
+[2025-04-10] [reject] 53455698 ordered B-9466
+0
+2
+[2025-04-13] move C-3567-01 from bs to ao for 97206718
+[2025-04-13] move C-4632-01 from bs to ao for 53056176
+[2025-04-13] [accept] 53056176 picked C-4632-01
+0
+0
+[2025-04-14] [accept] 97206718 picked C-3567-01
+0
+0
+[2025-04-18] B-7845-01 moving trace: 2
+1 [2025-01-15] from bs to ao
+2 [2025-01-16] from ao to user
+[2025-04-18] B-7845-01 moving trace: 2
+1 [2025-01-15] from bs to ao
+2 [2025-01-16] from ao to user
+[2025-04-18] [reject] 97206718 borrowed B-1899
+[2025-04-18] [reject] 53455698 borrowed B-2930
+[2025-04-18] C-1625-04 moving trace: 0
+[2025-04-18] [reject] 98130314 borrowed B-3312
+0
+0
+[2025-04-23] [accept] 98130314 borrowed C-9091-01
+[2025-04-23] B-2814-02 moving trace: 0
+[2025-04-23] [accept] 97206718 borrowed C-0790-01
+[2025-04-23] [accept] 18007790 ordered C-3567
+[2025-04-23] [reject] 53455698 borrowed B-8876
+[2025-04-23] [reject] 18007790 ordered A-3558
+0
+1
+[2025-04-24] move C-3567-02 from bs to ao for 18007790
+[2025-04-24] [accept] 43141069 returned C-8411-01
+1
+[2025-04-24] move C-8411-01 from bro to bs
+0
+[2025-04-26] [accept] 18007790 picked C-3567-02
+0
+0
+[2025-05-01] [accept] 98130314 returned C-9091-01
+1
+[2025-05-01] move C-9091-01 from bro to bs
+0
+0
+0
+[2025-05-06] [accept] 24240424 returned B-3058-02
+1
+[2025-05-06] move B-3058-02 from bro to bs
+0
+[2025-05-08] [accept] 97206718 returned C-0790-01
+1
+[2025-05-08] move C-0790-01 from bro to bs
+0
+[2025-05-11] B-2075-04 moving trace: 0
+[2025-05-11] [reject] 97206718 borrowed B-8171
+[2025-05-11] [accept] 27478744 borrowed C-9441-01
+[2025-05-11] [reject] 27478744 borrowed B-8876
+[2025-05-11] [accept] 26671610 ordered B-3058
+[2025-05-11] B-1444-05 moving trace: 0
+[2025-05-11] [reject] 97206718 borrowed C-8411
+[2025-05-11] C-9102-04 moving trace: 0
+[2025-05-11] [accept] 24240424 borrowed B-1444-01
+[2025-05-11] [accept] 18007790 borrowed C-0914-01
+0
+1
+[2025-05-12] move B-3058-02 from bs to ao for 26671610
+[2025-05-12] [accept] 26671610 picked B-3058-02
+0
+0
+[2025-05-13] C-9562-01 moving trace: 0
+[2025-05-13] [reject] 27478744 ordered C-9441
+[2025-05-13] [reject] 18007790 ordered B-1092
+[2025-05-13] [accept] 53056176 ordered B-8876
+[2025-05-13] [reject] 53455698 borrowed B-1159
+[2025-05-13] [accept] 98130314 borrowed C-0790-01
+[2025-05-13] [accept] 98130314 borrowed C-7257-01
+[2025-05-13] [reject] 98130314 borrowed B-1444
+[2025-05-13] [accept] 53056176 borrowed B-7881-02
+0
+1
+[2025-05-14] move B-8876-03 from bs to ao for 53056176
+0
+1
+[2025-05-24] move B-8876-03 from ao to bs
+[2025-05-24] [accept] 53056176 returned B-7881-02
+1
+[2025-05-24] move B-7881-02 from bro to bs
+0
+[2025-05-27] [accept] 24240424 returned B-1444-01
+1
+[2025-05-27] move B-1444-01 from bro to bs
+0
+[2025-05-31] [reject] 51188790 ordered B-1444
+[2025-05-31] [accept] 26671610 ordered C-7257
+[2025-05-31] [reject] 97206718 ordered A-3558
+[2025-05-31] [accept] 18007790 borrowed C-6242-01
+[2025-05-31] [accept] 27478744 borrowed C-7742-01
+[2025-05-31] [reject] 53455698 ordered B-0746
+[2025-05-31] B-3058-02 moving trace: 8
+1 [2025-02-19] from bs to user
+2 [2025-02-21] from user to bro
+3 [2025-02-21] from bro to bs
+4 [2025-04-10] from bs to user
+5 [2025-05-06] from user to bro
+6 [2025-05-06] from bro to bs
+7 [2025-05-12] from bs to ao
+8 [2025-05-12] from ao to user
+[2025-05-31] B-5574-01 moving trace: 0
+[2025-05-31] [accept] 43141069 borrowed C-3956-01
+0
+1
+[2025-06-01] move C-7257-02 from bs to ao for 26671610
+[2025-06-01] [accept] 98130314 returned C-0790-01
+[2025-06-01] [accept] 43141069 returned C-3956-01
+2
+[2025-06-01] move C-0790-01 from bro to bs
+[2025-06-01] move C-3956-01 from bro to bs
+0
+[2025-06-02] [accept] 26671610 picked C-7257-02
+0
+0
+0
+0
+0
+0
+[2025-06-24] [accept] 98130314 returned C-7257-01
+1
+[2025-06-24] move C-7257-01 from bro to bs
+0
+[2025-06-28] [accept] 43141069 borrowed C-9562-01
+[2025-06-28] [reject] 27478744 ordered B-2814
+[2025-06-28] A-9264-01 moving trace: 0
+[2025-06-28] [reject] 18007790 borrowed B-2814
+[2025-06-28] [reject] 26671610 borrowed A-0555
+[2025-06-28] [reject] 43141069 ordered B-7334
+[2025-06-28] [reject] 98130314 borrowed B-4740
+[2025-06-28] [accept] 26671610 borrowed C-0790-01
+[2025-06-28] [accept] 18007790 returned C-0914-01
+1
+[2025-06-28] move C-0914-01 from bro to bs
+0
+[2025-06-30] [accept] 27478744 returned C-9441-01
+1
+[2025-06-30] move C-9441-01 from bro to bs
+0
+[2025-07-02] [reject] 43141069 borrowed B-2930
+[2025-07-02] [reject] 18007790 ordered B-5574
+[2025-07-02] [reject] 98130314 borrowed B-1899
+[2025-07-02] [reject] 97206718 borrowed B-4728
+[2025-07-02] [accept] 53056176 borrowed B-2814-02
+[2025-07-02] [reject] 43141069 ordered B-1092
+[2025-07-02] B-7334-01 moving trace: 2
+1 [2025-04-04] from bs to ao
+2 [2025-04-10] from ao to bs
+[2025-07-02] [reject] 43141069 ordered B-2075
+[2025-07-02] [reject] 43141069 ordered B-1159
+0
+0
+[2025-07-07] [reject] 51188790 borrowed B-1101
+[2025-07-07] [accept] 53455698 ordered C-8341
+[2025-07-07] [reject] 53455698 ordered B-8876
+[2025-07-07] [accept] 53056176 ordered C-8411
+[2025-07-07] C-0790-01 moving trace: 17
+1 [2025-01-05] from bs to user
+2 [2025-01-19] from user to bro
+3 [2025-01-19] from bro to bs
+4 [2025-01-23] from bs to ao
+5 [2025-01-31] from ao to bs
+6 [2025-01-31] from bs to ao
+7 [2025-02-07] from ao to bs
+8 [2025-02-25] from bs to user
+9 [2025-03-11] from user to bro
+10 [2025-03-11] from bro to bs
+11 [2025-04-23] from bs to user
+12 [2025-05-08] from user to bro
+13 [2025-05-08] from bro to bs
+14 [2025-05-13] from bs to user
+15 [2025-06-01] from user to bro
+16 [2025-06-01] from bro to bs
+17 [2025-06-28] from bs to user
+[2025-07-07] [reject] 27478744 borrowed B-1899
+[2025-07-07] [accept] 26671610 returned C-0790-01
+1
+[2025-07-07] move C-0790-01 from bro to bs
+2
+[2025-07-09] move C-8411-04 from bs to ao for 53056176
+[2025-07-09] move C-8341-01 from bs to ao for 53455698
+[2025-07-09] [accept] 53056176 picked C-8411-04
+0
+0
+[2025-07-12] [accept] 53455698 picked C-8341-01
+0
+0
+[2025-07-17] [accept] 97206718 borrowed C-6242-02
+[2025-07-17] B-2930-01 moving trace: 0
+[2025-07-17] [reject] 18007790 ordered B-2387
+[2025-07-17] [accept] 98130314 borrowed C-8411-05
+[2025-07-17] [reject] 27478744 borrowed C-8411
+-----ERROR-----
+The user fails to borrow C books for no reason : [2025-07-17] [reject] 27478744 borrowed C-8411
+-----ERROR-----
