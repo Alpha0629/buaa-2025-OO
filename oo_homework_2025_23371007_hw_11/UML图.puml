@@ -1,0 +1,197 @@
+@startuml
+
+' 主类结构
+class MainClass {
+  + main(String[]): void
+}
+
+class Runner {
+  - commands: String[]
+  - network: NetworkInterface
+  - personConstructor: Constructor<PersonInterface>
+  - networkConstructor: Constructor<NetworkInterface>
+  - tagConstructor: Constructor<TagInterface>
+  - messageConstructor0/1: Constructor<MessageInterface>
+  - emojiConstructor0/1: Constructor<EmojiMessageInterface>
+  - forwardConstructor0/1: Constructor<ForwardMessageInterface>
+  - redEnvelopeConstructor0/1: Constructor<RedEnvelopeMessageInterface>
+  - scanner: Scanner
+  + run(): void
+  - 40+ command handlers (addPerson(), queryValue(), etc)
+}
+
+class Network {
+  - persons: HashMap<Integer, PersonInterface>
+  - accounts: HashMap<Integer, OfficialAccountInterface>
+  - messages: HashMap<Integer, MessageInterface>
+  - emoji2Heat: HashMap<Integer, Integer>
+  - disjointSet: DisjointSet
+  - tripleSum: int
+  - coupleSum: int
+  + 40+ public methods implementing NetworkInterface
+}
+
+class Person {
+  - id: int
+  - name: String
+  - age: int
+  - acquaintance: HashMap<Integer, PersonInterface>
+  - value: HashMap<Integer, Integer>
+  - tags: HashMap<Integer, TagInterface>
+  - messages: LinkedList<MessageInterface>
+  - bestAcquaintanceId: int
+  + 30+ public methods
+}
+
+class Tag {
+  - id: int
+  - persons: HashMap<Integer, PersonInterface>
+  - ageSum: BigInteger
+  - agePowSum: BigInteger
+  - valueSum: int
+  + 15+ public methods
+}
+
+class OfficialAccount {
+  - ownerId: int
+  - id: int
+  - name: String
+  - followers: HashMap<Integer, PersonInterface>
+  - articles: HashMap<Integer, PersonInterface>
+  - bestContributorId: int
+  + 10+ public methods
+}
+
+class DisjointSet {
+  - plink: HashMap<Integer, Integer>
+  - rank: HashMap<Integer, Integer>
+  + add(int)
+  + find(int): int
+  + merge(int, int)
+  + isCircle(int, int): boolean
+}
+
+class Assist {
+  + myCountNewTriples(): int
+  + myRebuildDisjointSet(): DisjointSet
+  + 5+ other static helper methods
+}
+
+' 消息类继承体系
+class Message {
+  - id: int
+  - socialValue: int
+  - type: int
+  - person1: PersonInterface
+  - person2: PersonInterface
+  - tag: TagInterface
+}
+
+class EmojiMessage {
+  - emojiId: int
+  + getEmojiId(): int
+}
+
+class ForwardMessage {
+  - articleId: int
+  + getArticleId(): int
+}
+
+class RedEnvelopeMessage {
+  - money: int
+  + getMoney(): int
+}
+
+' 接口定义
+interface NetworkInterface {
+  <<interface>>
+  + containsPerson(int): boolean
+  + addPerson(PersonInterface): void
+  + 30+ other methods
+}
+
+interface PersonInterface {
+  <<interface>>
+  + getId(): int
+  + getName(): String
+  + 20+ other methods
+}
+
+interface TagInterface {
+  <<interface>>
+  + getId(): int
+  + addPerson(PersonInterface): void
+  + 10+ other methods
+}
+
+interface MessageInterface {
+  <<interface>>
+  + getId(): int
+  + getType(): int
+  + 10+ other methods
+}
+
+interface EmojiMessageInterface {
+  <<interface>>
+  + getEmojiId(): int
+}
+
+interface ForwardMessageInterface {
+  <<interface>>
+  + getArticleId(): int
+}
+
+interface RedEnvelopeMessageInterface {
+  <<interface>>
+  + getMoney(): int
+}
+
+interface OfficialAccountInterface {
+  <<interface>>
+  + getOwnerId(): int
+  + addFollower(PersonInterface): void
+  + 10+ other methods
+}
+
+' 关系定义
+MainClass --> Runner
+Runner --> NetworkInterface
+Runner --> PersonInterface
+Runner --> TagInterface
+Runner --> MessageInterface
+
+Network ..|> NetworkInterface
+Network --> PersonInterface
+Network --> OfficialAccountInterface
+Network --> MessageInterface
+Network --> DisjointSet
+Network --> Assist
+
+Person ..|> PersonInterface
+Person --> TagInterface
+Person --> MessageInterface
+
+Tag ..|> TagInterface
+Tag --> PersonInterface
+
+OfficialAccount ..|> OfficialAccountInterface
+OfficialAccount --> PersonInterface
+
+Message ..|> MessageInterface
+Message --> PersonInterface
+Message --> TagInterface
+
+EmojiMessage --|> Message
+EmojiMessage ..|> EmojiMessageInterface
+
+ForwardMessage --|> Message
+ForwardMessage ..|> ForwardMessageInterface
+
+RedEnvelopeMessage --|> Message
+RedEnvelopeMessage ..|> RedEnvelopeMessageInterface
+
+DisjointSet <-- Assist
+Assist --> PersonInterface
+Assist --> DisjointSet
+
+@enduml
